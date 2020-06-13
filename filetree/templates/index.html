@@ -1,1 +1,20 @@
-<h1>Hello, World!</h1>
+{% load mptt_tags %}
+
+<h1>Welcome To Your Filetree</h1>
+
+
+{% if files %}
+<ul class='folders'>
+{% recursetree files %}
+<li>
+{{node.name}}
+{% if not node.is_leaf_node %}
+<ul class='children'>
+{{children}}
+</ul>
+{% endif %}
+</li>
+{% endrecursetree %}
+</ul>
+
+{% endif %}
